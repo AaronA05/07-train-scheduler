@@ -41,7 +41,7 @@
 			<h3 class = "panel-title">Current Train Schedule </h3>
 		</div>
 		<div class="panel-body">
-			<table class = "table">
+			<table class = "table" id = "train-info">
 				<tr>
 					<td>
 						<h6>Train Name</h6>
@@ -59,6 +59,9 @@
 						<h6>Minutes Away</h6>
 					</td>
 				</tr>
+				
+				
+
 			</table>
 		</div>
 	</div>
@@ -66,7 +69,7 @@
 
 <div class="container">
 	<div class = "panel panel-primary">
-		<div class="panel-heading">
+		<div class="panel-heading" id="train-add">
 			<h3 class="panel-title">Add Train</h3>
 		</div>
 		<div class="panel-body">
@@ -87,7 +90,8 @@
 					<label for="train-freq">Frequency (min)</label>
 					<input type="number" id = "train-freq" class = "form-control"> 
 				</div>
-				<button class = "btn btn-primary" id = "add-train" type = "submit">Submit</button>
+				<button class = "btn btn-primary" id = "add-train" type = "button">Submit</button>
+				<button class = "btn btn-primary" id = "add-time" type = "button">Add Time</button>
 			</form>
 		</div>
 	</div>
