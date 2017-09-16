@@ -42,18 +42,18 @@ db.ref("trainInfo").on("child_added", function(snapshot){
 	//looks for the value of the recently added object in the database, stores in variableSS
 	var newTrain = snapshot.val();
 	
+	//take the time passed in the form, and format
 	var firstArrival = moment(newTrain.time, "HH:mm a").format("YYYY-MM-DD HH:mm:ss");
-
+	//create a new variable to handle conversions and math at a later time in the code
 	var nextArrival = firstArrival;
+	//convert the arrival time to a better format for viewing in the table
 	var nextArrivalDisplay = moment(nextArrival).format("MM-DD hh:mm:ss a");
-	console.log(nextArrival);
+	
 
 	//takes the time of the nextarrival and finds the difference between now and that time
 	var minutesAway = moment(nextArrival).diff(moment(), "minutes");
-	console.log(minutesAway);
 
-	console.log(newTrain.frequency);
-
+	//tool for adding the frequency of arrival to the next train time if it is after current time
 	if (minutesAway < 0){
 		do{
 			nextArrival = moment(nextArrival).add(newTrain.frequency, "m");
@@ -65,18 +65,10 @@ db.ref("trainInfo").on("child_added", function(snapshot){
 
 		nextArrivalDisplay = moment(nextArrival).format("MM-DD hh:mm:ss a");
 	
-	$("#add-time").on("click", function (event){
-		event.preventDefault();
-		//this changes the value of nextArrival and adds the train frequency to the next time
-		 
-		console.log(nextArrival);
-		 
-	});
-	
+	//pushes the information to the table in HTML
 	$("#train-info").append("<tr><td>" + newTrain.name + "</td><td>" + newTrain.destination + "</td><td>"
 		+ newTrain.frequency + "</td><td>" + nextArrivalDisplay + "</td><td>" + minutesAway + "</td></tr>");
 
-	//this is function to test how to add time -- will need to use in other functions to have time add to arrival time
 	
 });
 
